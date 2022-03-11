@@ -15,6 +15,7 @@
 		6E3B730A27CD051E006FFDB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E3B730827CD051E006FFDB1 /* LaunchScreen.storyboard */; };
 		6E3B731527CE36C6006FFDB1 /* CollectionMosaicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3B731427CE36C6006FFDB1 /* CollectionMosaicCell.swift */; };
 		6E3B731827CE505F006FFDB1 /* CollectionMosaicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3B731727CE505F006FFDB1 /* CollectionMosaicLayout.swift */; };
+		6E3B731C27DB97C9006FFDB1 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3B731B27DB97C9006FFDB1 /* RandomColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,9 @@
 		6E3B730B27CD051E006FFDB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E3B731427CE36C6006FFDB1 /* CollectionMosaicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionMosaicCell.swift; sourceTree = "<group>"; };
 		6E3B731727CE505F006FFDB1 /* CollectionMosaicLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionMosaicLayout.swift; sourceTree = "<group>"; };
+		6E3B731B27DB97C9006FFDB1 /* RandomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
+		CB7BF0702BD85EA0DCC2004F /* Pods-CollectionViewTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollectionViewTask.release.xcconfig"; path = "Target Support Files/Pods-CollectionViewTask/Pods-CollectionViewTask.release.xcconfig"; sourceTree = "<group>"; };
+		D39AC35862F4B208FF1F27E8 /* Pods-CollectionViewTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollectionViewTask.debug.xcconfig"; path = "Target Support Files/Pods-CollectionViewTask/Pods-CollectionViewTask.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,11 +45,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		196D67A8F92260C48193F471 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D39AC35862F4B208FF1F27E8 /* Pods-CollectionViewTask.debug.xcconfig */,
+				CB7BF0702BD85EA0DCC2004F /* Pods-CollectionViewTask.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		6E3B72F127CD051D006FFDB1 = {
 			isa = PBXGroup;
 			children = (
 				6E3B72FC27CD051D006FFDB1 /* CollectionViewTask */,
 				6E3B72FB27CD051D006FFDB1 /* Products */,
+				196D67A8F92260C48193F471 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,7 +74,7 @@
 		6E3B72FC27CD051D006FFDB1 /* CollectionViewTask */ = {
 			isa = PBXGroup;
 			children = (
-				6E3B731927CE5AB9006FFDB1 /* Data */,
+				6E3B731A27DB97A9006FFDB1 /* Utils */,
 				6E3B731627CE5038006FFDB1 /* Layout */,
 				6E3B72FD27CD051D006FFDB1 /* AppDelegate.swift */,
 				6E3B72FF27CD051D006FFDB1 /* SceneDelegate.swift */,
@@ -82,11 +96,12 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
-		6E3B731927CE5AB9006FFDB1 /* Data */ = {
+		6E3B731A27DB97A9006FFDB1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6E3B731B27DB97C9006FFDB1 /* RandomColor.swift */,
 			);
-			path = Data;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +111,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6E3B730E27CD051E006FFDB1 /* Build configuration list for PBXNativeTarget "CollectionViewTask" */;
 			buildPhases = (
+				51F51A6C0A7A2258373EE577 /* [CP] Check Pods Manifest.lock */,
+				6E7541BD27DB9B4C00E5B6B3 /* Run Script */,
 				6E3B72F627CD051D006FFDB1 /* Sources */,
 				6E3B72F727CD051D006FFDB1 /* Frameworks */,
 				6E3B72F827CD051D006FFDB1 /* Resources */,
@@ -155,6 +172,49 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		51F51A6C0A7A2258373EE577 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CollectionViewTask-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E7541BD27DB9B4C00E5B6B3 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n    ${PODS_ROOT}/SwiftLint/swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6E3B72F627CD051D006FFDB1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -164,6 +224,7 @@
 				6E3B730227CD051D006FFDB1 /* ViewController.swift in Sources */,
 				6E3B72FE27CD051D006FFDB1 /* AppDelegate.swift in Sources */,
 				6E3B730027CD051D006FFDB1 /* SceneDelegate.swift in Sources */,
+				6E3B731C27DB97C9006FFDB1 /* RandomColor.swift in Sources */,
 				6E3B731527CE36C6006FFDB1 /* CollectionMosaicCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +369,7 @@
 		};
 		6E3B730F27CD051E006FFDB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D39AC35862F4B208FF1F27E8 /* Pods-CollectionViewTask.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -335,6 +397,7 @@
 		};
 		6E3B731027CD051E006FFDB1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB7BF0702BD85EA0DCC2004F /* Pods-CollectionViewTask.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
