@@ -49,7 +49,7 @@ extension CollectionViewController: UICollectionViewDelegate {
 //        guard let cell = collectionView.cellForItem(at: indexPath) else { preconditionFailure("Failed to load collection view cell") }
 //
 //        cell.backgroundColor = randomColor()
-        
+
 
 
 
@@ -62,8 +62,6 @@ extension CollectionViewController: UICollectionViewDelegate {
 
         if let cellBackgroundColor = cell.backgroundColor {
             detailView.viewCustomColor = cellBackgroundColor
-
-            transition.recColor = cellBackgroundColor
         }
 
         self.navigationController?.pushViewController(detailView, animated: true)
