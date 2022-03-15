@@ -59,6 +59,10 @@ class CollectionMosaicLayout: UICollectionViewLayout {
         }
     }
 
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return cachedAttributes[indexPath.item]
+    }
+
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var layoutAttributes = [UICollectionViewLayoutAttributes]()
         for attributes in cachedAttributes {
