@@ -2,19 +2,40 @@ import UIKit
 
 class NavigationTransition: NSObject {
     var recColor: UIColor = .green
-    var startPoint: CGPoint = .zero
+    var rectangle: UIView = UIView()
+
+    var rectangleFrame: CGRect = .zero {
+        didSet {
+            rectangle.frame = rectangleFrame
+        }
+    }
+    
+    var startPoint: CGPoint = .zero {
+        didSet {
+            rectangle.center = startPoint
+        }
+    }
+
+    enum Constants {
+        static let animationDuration = 1.4
+        static let showViewAnimationDuration = 0.2
+        static let rectangleAnimationDution = animationDuration - showViewAnimationDuration
+        static let minAlphaValue: CGFloat = 0
+        static let maxAlphaValue: CGFloat = 1
+        static let minScaleFactor: CGFloat = 0.3
+        static let maxScaleFactor: CGFloat = 10.0
+    }
 
     enum NavigationTransitionMode: Int {
         case present, dismiss, pop
     }
 
     var transitionMode: UINavigationController.Operation = .push
-    var animationDuraction = 1.4
 }
 
 extension NavigationTransition: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return animationDuraction
+        return Constants.animationDuration
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -25,24 +46,39 @@ extension NavigationTransition: UIViewControllerAnimatedTransitioning {
         if transitionMode == .push {
             let presentedViewCenter = toView.center
 
-            toView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
-            toView.center = startPoint
+            rectangle.backgroundColor = recColor
+            rectangle.transform = CGAffineTransform(scaleX: Constants.minScaleFactor, y: Constants.minScaleFactor)
 
+            toView.alpha = Constants.minAlphaValue
+        
             containerView.addSubview(toView)
+            containerView.addSubview(rectangle)
 
-            UIView.animate(withDuration: animationDuraction, animations: {
-                toView.transform = CGAffineTransform.identity
-                toView.center = presentedViewCenter
+            UIView.animate(withDuration: Constants.rectangleAnimationDution, animations: {
+                self.rectangle.transform = CGAffineTransform(scaleX: Constants.maxScaleFactor, y: Constants.maxScaleFactor)
+
+                self.rectangle.center = presentedViewCenter
+            })
+            
+            UIView.animate(withDuration: Constants.showViewAnimationDuration, delay: Constants.rectangleAnimationDution, animations: {
+                toView.alpha = Constants.maxAlphaValue
             }, completion: { (success: Bool) in
                 transitionContext.completeTransition(success) })
+            
         } else {
             containerView.insertSubview(toView, belowSubview: fromView)
 
-            UIView.animate(withDuration: animationDuraction, animations: {
-                fromView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
-                fromView.center = self.startPoint
+            UIView.animate(withDuration: Constants.showViewAnimationDuration, animations: {
+                fromView.alpha = Constants.minAlphaValue
+            })
+
+            UIView.animate(withDuration: Constants.rectangleAnimationDution, animations: {
+                self.rectangle.transform = CGAffineTransform.identity
+                self.rectangle.transform = CGAffineTransform(scaleX: Constants.minScaleFactor, y: Constants.minScaleFactor)
+                self.rectangle.center = self.startPoint
             }, completion: { (success: Bool) in
                 fromView.removeFromSuperview()
+                self.rectangle.removeFromSuperview()
 
                 transitionContext.completeTransition(success) })
         }

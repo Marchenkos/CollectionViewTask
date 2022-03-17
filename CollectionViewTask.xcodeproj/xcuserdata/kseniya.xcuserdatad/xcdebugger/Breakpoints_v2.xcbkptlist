@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "B33B4987-5EEE-4BB0-B58D-8CC793DB2222"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "702C58C5-4A03-4A13-ADF3-7D54AEC3AC54"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CollectionViewTask/Utils/NavigationTransition.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "NavigationTransitionMode"
+            landmarkType = "13">
+            <Locations>
+               <Location
+                  uuid = "702C58C5-4A03-4A13-ADF3-7D54AEC3AC54 - 96b8c5c9d51b608f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CollectionViewTask.NavigationTransition.NavigationTransitionMode.init(rawValue: Swift.Int) -&gt; Swift.Optional&lt;CollectionViewTask.NavigationTransition.NavigationTransitionMode&gt;"
+                  moduleName = "CollectionViewTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kseniya/Documents/swift/CollectionViewTask/CollectionViewTask/Utils/NavigationTransition.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "53">
+               </Location>
+               <Location
+                  uuid = "702C58C5-4A03-4A13-ADF3-7D54AEC3AC54 - e203d71ce0d2ac92"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CollectionViewTask.NavigationTransition.NavigationTransitionMode.rawValue.getter : Swift.Int"
+                  moduleName = "CollectionViewTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kseniya/Documents/swift/CollectionViewTask/CollectionViewTask/Utils/NavigationTransition.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

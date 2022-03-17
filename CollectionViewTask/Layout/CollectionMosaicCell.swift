@@ -1,7 +1,9 @@
 import UIKit
 
 class CollectionMosaicCell: UICollectionViewCell {
-    static let identifer = "CollectionMosaicCellIdentifer"
+    enum Constants {
+        static let cellId = "CollectionMosaicCellIdentifer"
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

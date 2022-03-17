@@ -1,7 +1,7 @@
 import UIKit
 
 class CollectionMosaicLayout: UICollectionViewLayout {
-    private enum Constants {
+    enum Constants {
         static let numberOfColumns = 3
         static let cellPadding = 8.0
     }
@@ -59,10 +59,6 @@ class CollectionMosaicLayout: UICollectionViewLayout {
         }
     }
 
-    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return cachedAttributes[indexPath.item]
-    }
-
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var layoutAttributes = [UICollectionViewLayoutAttributes]()
         for attributes in cachedAttributes {
@@ -70,6 +66,11 @@ class CollectionMosaicLayout: UICollectionViewLayout {
                 layoutAttributes.append(attributes)
             }
         }
+
         return layoutAttributes
+    }
+    
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return cachedAttributes[indexPath.item]
     }
 }
