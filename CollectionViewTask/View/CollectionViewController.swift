@@ -15,6 +15,38 @@ class CollectionViewController: UIViewController {
 
         collectionView.insertItems(at: [indexPath])
     }
+    
+    @IBAction func handleDoubleTap(_ gesture: UITapGestureRecognizer) {
+        guard let gestureView = gesture.view, let collectionView = self.collectionView else { return }
+
+        let detailView = DetailsViewController()
+        
+        let calculatedOrigins = CGPoint(
+            x: gestureView.frame.origin.x + CollectionMosaicLayout.Constants.cellPadding,
+            y: gestureView.frame.origin.y + collectionView.frame.origin.y
+        )
+        
+        let calculatedCenterPoint = CGPoint(
+            x: gestureView.center.x + CollectionMosaicLayout.Constants.cellPadding,
+            y: gestureView.center.y + collectionView.frame.origin.y
+        )
+    
+        transition.startPoint = calculatedCenterPoint
+        transition.rectangleFrame = CGRect(origin: calculatedOrigins, size: gestureView.frame.size)
+
+        if let cellBackgroundColor = gestureView.backgroundColor {
+            detailView.viewCustomColor = cellBackgroundColor
+            transition.recColor = cellBackgroundColor
+        }
+
+        self.navigationController?.pushViewController(detailView, animated: true)
+    }
+    
+    @IBAction func handleSingleTap(_ gesture: UITapGestureRecognizer) {
+        guard let gestureView = gesture.view else { return }
+        
+        gestureView.backgroundColor = randomColor()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +58,6 @@ class CollectionViewController: UIViewController {
 
         collectionView.autoresizingMask = [.flexibleHeight]
         collectionView.alwaysBounceVertical = true
-        collectionView.delegate = self
         collectionView.dataSource = self
 
         collectionView.collectionViewLayout = CollectionMosaicLayout()
@@ -45,41 +76,18 @@ extension CollectionViewController: UICollectionViewDataSource {
             withReuseIdentifier: CollectionMosaicCell.Constants.cellId,
             for: indexPath
         ) as? CollectionMosaicCell else { preconditionFailure("Failed to load collection view cell") }
+        
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(handleSingleTap))
+        singleTap.numberOfTapsRequired = 1
+        cell.addGestureRecognizer(singleTap)
+
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
+        doubleTap.numberOfTapsRequired = 2
+        cell.addGestureRecognizer(doubleTap)
+
+        singleTap.require(toFail: doubleTap)
 
         return cell
-    }
-}
-
-extension CollectionViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // UPDATE CELL BACKGROUND ON CLICK
-
-//        guard let cell = collectionView.cellForItem(at: indexPath) else { preconditionFailure("Failed to load collection view cell") }
-//
-//        cell.backgroundColor = randomColor()
-
-        // NAVIGATE TO ANOTHER SCREEN ON CLICK
-
-        guard let cell = collectionView.cellForItem(at: indexPath) else { preconditionFailure("Failed to load collection view cell") }
-
-        let detailView = DetailsViewController()
-        
-        let calculatedOrigins = CGPoint(
-            x: cell.frame.origin.x + CollectionMosaicLayout.Constants.cellPadding,
-            y: cell.frame.origin.y + collectionView.frame.origin.y
-        )
-        
-        let calculatedCenterPoint = CGPoint(x: cell.center.x + CollectionMosaicLayout.Constants.cellPadding, y: cell.center.y + collectionView.frame.origin.y)
-    
-        transition.startPoint = calculatedCenterPoint
-        transition.rectangleFrame = CGRect(origin: calculatedOrigins, size: cell.frame.size)
-
-        if let cellBackgroundColor = cell.backgroundColor {
-            detailView.viewCustomColor = cellBackgroundColor
-            transition.recColor = cellBackgroundColor
-        }
-
-        self.navigationController?.pushViewController(detailView, animated: true)
     }
 }
 
