@@ -1,0 +1,5 @@
+excluded:
+  - Pods
+line_length:
+  warning: 160
+  error: 200
